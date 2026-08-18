@@ -1,0 +1,6 @@
+{
+  "name": "JanSahay AI — Citizen Service Assistant",
+  "description": "AI-Powered Multilingual Citizen Service & Welfare Assistant for Digital Public Infrastructure",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
