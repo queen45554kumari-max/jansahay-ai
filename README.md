@@ -132,11 +132,35 @@ India has built world-leading Digital Public Infrastructure (DPI) including Aadh
    ```
    The application runs on `http://localhost:3000`.
 
-3. **Build for Production:**
+3. **Build and Test for Production:**
    ```bash
    npm run build
    npm start
    ```
+
+---
+
+## ☁️ Google Cloud Run Deployment
+
+JanSahay AI is container and Cloud Run-ready with native dynamic `PORT` routing, `0.0.0.0` binding, and bundled static Vite assets served by the Express backend.
+
+### Quick Deploy to Cloud Run (gcloud CLI):
+
+1. **Build and Deploy with Cloud Build / Cloud Run:**
+   ```bash
+   gcloud run deploy jansahay-ai \
+     --source . \
+     --platform managed \
+     --region asia-south1 \
+     --allow-unauthenticated \
+     --set-env-vars GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
+   ```
+
+2. **Cloud Run Runtime Specifications:**
+   - **Port Configuration:** Cloud Run dynamically injects `process.env.PORT` (e.g. 8080). `server.ts` automatically binds to `process.env.PORT` and `0.0.0.0`.
+   - **Container Start Command:** `npm start` (executes `node dist/server.cjs`).
+   - **Production Assets:** Single artifact bundle serving frontend SPA from `dist/` and backend API endpoints from `/api/*`.
+   - **Environment Variables:** `GEMINI_API_KEY` is securely stored in Cloud Run environment variables / Secret Manager and never exposed to the client.
 
 ---
 
